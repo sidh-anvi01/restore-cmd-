@@ -2,32 +2,972 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nature — Explore the Wild</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            color: #24352a;
+            background: #f5f7f1;
+            line-height: 1.6;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            padding: 25px 7%;
+        }
+
+        nav {
+            max-width: 1250px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            color: white;
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #b8d99b;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #b8d99b;
+        }
+
+        .nav-btn {
+            border: 1px solid rgba(255,255,255,0.7);
+            padding: 10px 20px;
+            border-radius: 30px;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            background:
+                linear-gradient(
+                    rgba(13, 35, 21, 0.45),
+                    rgba(13, 35, 21, 0.65)
+                ),
+                url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2000&q=85")
+                center/cover no-repeat;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 100px 20px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero-small {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            color: #cde6b6;
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(50px, 8vw, 95px);
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            font-size: 18px;
+            color: #e5eee1;
+        }
+
+        .hero-buttons {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #b8d99b;
+            color: #19301f;
+        }
+
+        .btn-primary:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            border: 1px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #19301f;
+        }
+
+        /* =========================
+           INTRO
+        ========================= */
+
+        .intro {
+            padding: 110px 7%;
+            text-align: center;
+        }
+
+        .section-label {
+            color: #64845d;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(36px, 5vw, 60px);
+            line-height: 1.15;
+            color: #203d29;
+            margin-bottom: 20px;
+        }
+
+        .intro-text {
+            max-width: 700px;
+            margin: auto;
+            color: #657267;
+            font-size: 17px;
+        }
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .places {
+            padding: 20px 7% 110px;
+        }
+
+        .card-grid {
+            max-width: 1250px;
+            margin: 50px auto 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(29, 55, 34, 0.08);
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-image {
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-content h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 26px;
+            margin-bottom: 10px;
+            color: #24432d;
+        }
+
+        .card-content p {
+            color: #718073;
+            font-size: 14px;
+        }
+
+        /* =========================
+           FEATURE SECTION
+        ========================= */
+
+        .feature {
+            padding: 100px 7%;
+            background: #e8eee2;
+        }
+
+        .feature-container {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .feature-image {
+            height: 600px;
+            object-fit: cover;
+            border-radius: 25px;
+        }
+
+        .feature-content h2 {
+            font-family: "Playfair Display", serif;
+            color: #203d29;
+            font-size: clamp(38px, 5vw, 60px);
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .feature-content p {
+            color: #657267;
+            margin-bottom: 20px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 15px;
+            color: #405547;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            color: #638c5b;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+
+        /* =========================
+           GALLERY
+        ========================= */
+
+        .gallery {
+            padding: 110px 7%;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            max-width: 1250px;
+            margin: 50px auto 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 240px;
+            gap: 15px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .gallery-item img {
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item:nth-child(4) {
+            grid-column: span 2;
+        }
+
+        /* =========================
+           QUOTE
+        ========================= */
+
+        .quote {
+            min-height: 500px;
+            padding: 100px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    rgba(16, 39, 23, 0.72),
+                    rgba(16, 39, 23, 0.72)
+                ),
+                url("https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=2000&q=85")
+                center/cover no-repeat;
+
+            color: white;
+        }
+
+        .quote-content {
+            max-width: 800px;
+        }
+
+        .quote p {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(32px, 5vw, 55px);
+            line-height: 1.2;
+        }
+
+        .quote span {
+            display: block;
+            margin-top: 25px;
+            color: #c5dcb2;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .cta {
+            padding: 100px 7%;
+            text-align: center;
+            background: #f5f7f1;
+        }
+
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #68766c;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #16291d;
+            color: white;
+            padding: 60px 7% 30px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+        }
+
+        .footer-logo {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo span {
+            color: #b8d99b;
+        }
+
+        footer p {
+            color: #aab8ad;
+            font-size: 14px;
+        }
+
+        footer h4 {
+            margin-bottom: 18px;
+            color: #d8e6d2;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #aab8ad;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            max-width: 1200px;
+            margin: 50px auto 0;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 13px;
+            color: #7f9084;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                gap: 18px;
+            }
+
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .feature-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .feature-image {
+                height: 450px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            header {
+                padding: 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-btn {
+                display: none;
+            }
+
+            .hero {
+                min-height: 90vh;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .intro,
+            .places,
+            .feature,
+            .gallery,
+            .cta {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-image {
+                height: 380px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: 170px;
+            }
+
+            .gallery-item:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+    </style>
 </head>
+
 <body>
 
-    <h1>hello  this is html page </h1>
-    <h1>hello  this is html page </h1>
-    <h1>hello  this is html page </h1>
-    <h1>hello  this is html page </h1>
-    <h1>hello  this is html page </h1>
-    <h1>hello  this is html page </h1>
-    <h1>hello  this is html page </h1>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil, omnis reiciendis voluptas expedita libero quibusdam, minus laborum doloremque itaque doloribus nam, nostrum consectetur! Perferendis, nihil quo. Eos id fugit beatae.</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil, omnis reiciendis voluptas expedita libero quibusdam, minus laborum doloremque itaque doloribus nam, nostrum consectetur! Perferendis, nihil quo. Eos id fugit beatae.</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil, omnis reiciendis voluptas expedita libero quibusdam, minus laborum doloremque itaque doloribus nam, nostrum consectetur! Perferendis, nihil quo. Eos id fugit beatae.</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil, omnis reiciendis voluptas expedita libero quibusdam, minus laborum doloremque itaque doloribus nam, nostrum consectetur! Perferendis, nihil quo. Eos id fugit beatae.</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil, omnis reiciendis voluptas expedita libero quibusdam, minus laborum doloremque itaque doloribus nam, nostrum consectetur! Perferendis, nihil quo. Eos id fugit beatae.</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil, omnis reiciendis voluptas expedita libero quibusdam, minus laborum doloremque itaque doloribus nam, nostrum consectetur! Perferendis, nihil quo. Eos id fugit beatae.</p>
-    
-    
-    
-    
-    
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header>
+        <nav>
+
+            <a href="#" class="logo">
+                NATURE<span>.</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#places">Places</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <a href="#places" class="nav-btn">
+                Explore
+            </a>
+
+        </nav>
+    </header>
 
 
+    <!-- =========================
+         HERO
+    ========================== -->
 
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-small">
+                Discover the Wild
+            </div>
+
+            <h1>
+                Find Your Way<br>
+                Back to Nature
+            </h1>
+
+            <p>
+                Escape the noise of everyday life and discover
+                peaceful landscapes, wild forests, majestic mountains
+                and places that remind us how beautiful our planet is.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#places" class="btn btn-primary">
+                    Explore Nature
+                </a>
+
+                <a href="#about" class="btn btn-outline">
+                    Learn More
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         INTRO
+    ========================== -->
+
+    <section class="intro" id="about">
+
+        <div class="section-label">
+            The Natural World
+        </div>
+
+        <h2 class="section-title">
+            There is beauty<br>
+            everywhere.
+        </h2>
+
+        <p class="intro-text">
+            From ancient forests and quiet lakes to dramatic mountains
+            and endless oceans, nature gives us places to slow down,
+            breathe deeply and reconnect with what truly matters.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         PLACES
+    ========================== -->
+
+    <section class="places" id="places">
+
+        <div class="section-label">
+            Explore
+        </div>
+
+        <h2 class="section-title">
+            Places worth discovering
+        </h2>
+
+        <div class="card-grid">
+
+            <article class="card">
+
+                <img
+                    class="card-image"
+                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80"
+                    alt="Mountain landscape">
+
+                <div class="card-content">
+
+                    <h3>Mountains</h3>
+
+                    <p>
+                        Walk beyond the ordinary and experience
+                        the silence, scale and beauty of the mountains.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="card">
+
+                <img
+                    class="card-image"
+                    src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1000&q=80"
+                    alt="Green forest">
+
+                <div class="card-content">
+
+                    <h3>Forests</h3>
+
+                    <p>
+                        Wander beneath ancient trees and discover
+                        a world filled with life, light and quiet.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="card">
+
+                <img
+                    class="card-image"
+                    src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80"
+                    alt="Beautiful lake">
+
+                <div class="card-content">
+
+                    <h3>Lakes</h3>
+
+                    <p>
+                        Find stillness beside crystal-clear water
+                        surrounded by untouched landscapes.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FEATURE
+    ========================== -->
+
+    <section class="feature">
+
+        <div class="feature-container">
+
+            <img
+                class="feature-image"
+                src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=85"
+                alt="Forest trees">
+
+            <div class="feature-content">
+
+                <div class="section-label">
+                    Why Nature Matters
+                </div>
+
+                <h2>
+                    Slow down.<br>
+                    Look around.
+                </h2>
+
+                <p>
+                    Nature gives us something modern life often takes away:
+                    space to breathe, think and simply exist.
+                </p>
+
+                <p>
+                    Spending time outdoors can help us reconnect with
+                    ourselves and appreciate the world around us.
+                </p>
+
+                <ul class="feature-list">
+
+                    <li>Reconnect with the natural world</li>
+                    <li>Discover peaceful destinations</li>
+                    <li>Experience outdoor adventures</li>
+                    <li>Create unforgettable memories</li>
+
+                </ul>
+
+                <a href="#gallery" class="btn btn-primary">
+                    View Gallery
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         GALLERY
+    ========================== -->
+
+    <section class="gallery" id="gallery">
+
+        <div class="section-label">
+            Visual Journey
+        </div>
+
+        <h2 class="section-title">
+            Moments in nature
+        </h2>
+
+        <div class="gallery-grid">
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1200&q=85"
+                    alt="Mountain valley">
+            </div>
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80"
+                    alt="Mountain lake">
+            </div>
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=900&q=80"
+                    alt="Waterfall">
+            </div>
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1000&q=80"
+                    alt="Forest">
+            </div>
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1000&q=80"
+                    alt="Green forest">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         QUOTE
+    ========================== -->
+
+    <section class="quote">
+
+        <div class="quote-content">
+
+            <p>
+                "Look deep into nature,
+                and then you will understand
+                everything better."
+            </p>
+
+            <span>
+                — Albert Einstein
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CTA
+    ========================== -->
+
+    <section class="cta" id="contact">
+
+        <div class="section-label">
+            Your Next Adventure
+        </div>
+
+        <h2 class="section-title">
+            The world is waiting.
+        </h2>
+
+        <p>
+            Step outside. Explore somewhere new.
+            Leave the familiar behind and make your next
+            memory somewhere beautiful.
+        </p>
+
+        <a href="#places" class="btn btn-primary">
+            Start Exploring
+        </a>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div>
+
+                <div class="footer-logo">
+                    NATURE<span>.</span>
+                </div>
+
+                <p>
+                    Inspiring people to explore,
+                    appreciate and protect the
+                    natural world.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>Explore</h4>
+
+                <ul class="footer-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#places">Places</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h4>Discover</h4>
+
+                <ul class="footer-links">
+                    <li><a href="#">Mountains</a></li>
+                    <li><a href="#">Forests</a></li>
+                    <li><a href="#">Lakes</a></li>
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h4>Connect</h4>
+
+                <ul class="footer-links">
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+            © 2026 Nature. All rights reserved.
+        </div>
+
+    </footer>
 
 </body>
 </html>
